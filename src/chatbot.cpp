@@ -45,6 +45,58 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// Source: https://knowledge.udacity.com/questions/647126
+
+// copy constructor
+ChatBot::ChatBot(const ChatBot &src) {
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    _image = new wxBitmap(*src._image);
+    _rootNode = src._rootNode;
+    _currentNode = src._currentNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+}
+
+// copy assignment operator
+ChatBot& ChatBot::operator=(const ChatBot &src) {
+    std::cout << "ChatBot Copy Assignment Operator" << std::endl;
+    _image = new wxBitmap(*src._image);
+    _rootNode = src._rootNode;
+    _currentNode = src._currentNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    return *this;
+}
+
+// move constructor
+ChatBot::ChatBot(ChatBot &&src) {
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    _image = src._image;
+    _rootNode = src._rootNode;
+    _currentNode = src._currentNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    src._image = NULL;
+    src._rootNode = nullptr;
+    src._currentNode = nullptr;
+    src._chatLogic = nullptr;        
+}
+
+// move assignment operator
+ChatBot& ChatBot::operator=(ChatBot &&src) {
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    _image = src._image;
+    _rootNode = src._rootNode;
+    _currentNode = src._currentNode;
+    _chatLogic = src._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    src._image = NULL;
+    src._rootNode = nullptr;
+    src._currentNode = nullptr;
+    src._chatLogic = nullptr;
+    return *this;
+}
+
 ////
 //// EOF STUDENT CODE
 
